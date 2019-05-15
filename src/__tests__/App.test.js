@@ -4,13 +4,15 @@ import renderer from 'react-test-renderer';
 
 import actions from '../actions';
 
-const spyOne = jest.spyOn(actions, 'asyncOne');
-const spyTwo = jest.spyOn(actions, 'asyncTwo');
+const spyOne = jest.spyOn(actions, 'funcOne');
+const spyTwo = jest.spyOn(actions, 'funcTwo');
 
-describe('App ', () => {
+describe('App ', async () => {
   test('does async stuff in expected order', async () => {
     console.log('Starting test');
     const tree = await renderer.create(<App />);
+    // await (() => new Promise(setImmediate))();
+
     console.log('About to expect');
     expect(spyOne).toHaveBeenCalled();
     console.log('Expect one to have been called');
